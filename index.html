@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Guía educativa sobre embarazo, lactancia, nutrición, crecimiento fetal y patologías frecuentes del embarazo.">
+  <title>Embarazo y Lactancia: Guía para ti y tu bebé</title>
+  <style>
+    :root{
+      --guinda:#6A1B32; --guinda-2:#8b2a48; --verde:#A8D5BA; --verde-2:#e8f5ed;
+      --rosa:#F4C2C2; --rosa-2:#fff0f0; --crema:#fffaf7; --texto:#243039;
+      --muted:#65717a; --blanco:#fff; --borde:#eadfe1; --sombra:0 10px 30px rgba(48,28,35,.09);
+      --radio:18px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color:var(--texto);background:var(--crema);line-height:1.6}
+    a{color:var(--guinda)}
+    button,input{font:inherit}
+    .skip{position:absolute;left:-9999px}.skip:focus{left:10px;top:10px;background:#fff;padding:8px;z-index:99}
+    header{background:linear-gradient(135deg,var(--guinda),#8e3856);color:#fff;padding:72px 20px 44px;position:relative;overflow:hidden}
+    header:after{content:"";position:absolute;width:280px;height:280px;border-radius:50%;background:rgba(244,194,194,.18);right:-90px;top:-100px}
+    .wrap{width:min(1120px,calc(100% - 32px));margin:auto}
+    .hero{display:grid;grid-template-columns:1fr;gap:22px;align-items:center;position:relative;z-index:1}
+    .eyebrow{font-weight:800;letter-spacing:.08em;text-transform:uppercase;font-size:.78rem;opacity:.9}
+    h1{font-size:clamp(2rem,5vw,3.6rem);line-height:1.05;margin:.25rem 0 1rem}
+    h2{font-size:clamp(1.55rem,3vw,2.25rem);line-height:1.15;color:var(--guinda);margin:0 0 .8rem}
+    h3{color:var(--guinda);margin:.3rem 0 .5rem}
+    .hero p{font-size:1.12rem;max-width:700px;margin:0 0 1.2rem}
+    .hero-badge{justify-self:center;background:#fff;color:var(--guinda);width:150px;height:150px;border-radius:50%;display:grid;place-items:center;font-size:5rem;box-shadow:0 18px 45px rgba(0,0,0,.16)}
+    nav{position:sticky;top:0;z-index:20;background:rgba(255,255,255,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--borde);box-shadow:0 4px 18px rgba(0,0,0,.05)}
+    .nav-inner{display:flex;gap:8px;overflow:auto;padding:10px 0;scrollbar-width:thin}
+    nav a{white-space:nowrap;text-decoration:none;font-size:.86rem;font-weight:700;padding:8px 11px;border-radius:999px;color:var(--guinda)}
+    nav a:hover,nav a:focus{background:var(--rosa-2)}
+    main{padding:38px 0}
+    section{scroll-margin-top:76px;margin:0 0 46px}
+    .section-intro{max-width:800px;color:var(--muted)}
+    .card{background:#fff;border:1px solid var(--borde);border-radius:var(--radio);box-shadow:var(--sombra);padding:22px}
+    .grid{display:grid;gap:18px}
+    .grid-2{grid-template-columns:1fr}
+    .grid-3{grid-template-columns:1fr}
+    .calculator{background:linear-gradient(135deg,#fff,#fff4f4);border:2px solid var(--rosa)}
+    .form-grid{display:grid;grid-template-columns:1fr;gap:14px}
+    label{font-weight:800;font-size:.92rem}
+    input{width:100%;margin-top:6px;padding:13px 14px;border:1px solid #cfc4c8;border-radius:12px;background:#fff}
+    input:focus{outline:3px solid rgba(168,213,186,.55);border-color:#72ad8a}
+    .btn{border:0;border-radius:12px;padding:13px 17px;font-weight:900;cursor:pointer;background:var(--guinda);color:#fff;transition:transform .15s,filter .15s}
+    .btn:hover{filter:brightness(1.08);transform:translateY(-1px)}
+    .btn.secondary{background:var(--verde);color:#163a29}
+    .btn.light{background:#fff;color:var(--guinda);border:1px solid var(--borde)}
+    .calculator-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px}
+    .result{display:none;margin-top:20px}
+    .result.show{display:block}
+    .result-top{display:grid;grid-template-columns:1fr;gap:12px}
+    .metric{background:var(--verde-2);border-radius:14px;padding:16px}
+    .metric strong{display:block;font-size:1.55rem;color:#1f5d3c}
+    .notice{border-left:5px solid var(--guinda);background:#fff8fa;padding:13px 15px;border-radius:10px}
+    .small{font-size:.88rem;color:var(--muted)}
+    .range-bar{height:24px;border-radius:999px;background:#f0e8ea;position:relative;overflow:hidden;margin:14px 0 8px}
+    .range-fill{height:100%;background:linear-gradient(90deg,var(--rosa),var(--guinda));border-radius:999px}
+    .range-labels{display:flex;justify-content:space-between;font-size:.82rem;font-weight:800}
+    .food-row{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin-top:14px}
+    .food{background:#fff;border:1px solid var(--borde);border-radius:14px;padding:12px;text-align:center}
+    .food .icon{font-size:2rem;display:block}
+    .table-wrap{overflow:auto;border:1px solid var(--borde);border-radius:14px}
+    table{width:100%;border-collapse:collapse;min-width:620px;background:#fff}
+    th,td{padding:11px 12px;border-bottom:1px solid #eee;text-align:left;vertical-align:top}
+    th{background:#fbf1f3;color:var(--guinda)}
+    .bar-chart{display:grid;gap:12px;margin-top:15px}
+    .bar-item{display:grid;grid-template-columns:145px 1fr 62px;gap:8px;align-items:center;font-size:.9rem}
+    .bar-track{height:18px;background:#eee;border-radius:999px;overflow:hidden}
+    .bar-fill{height:100%;background:var(--guinda);border-radius:999px}
+    .myth{background:#fff3f3;border-color:#f0caca}.reality{background:#f1fbf5;border-color:#c8e6d3}
+    .two-col-callout{display:grid;grid-template-columns:1fr;gap:14px}
+    .callout{padding:18px;border-radius:15px;border:1px solid var(--borde)}
+    .checklist label{display:flex;align-items:flex-start;gap:10px;padding:12px 0;border-bottom:1px solid #eee;font-weight:600}
+    .checklist input{width:auto;margin:4px 0 0;accent-color:var(--guinda)}
+    .progress{height:10px;background:#eee;border-radius:999px;overflow:hidden;margin:12px 0}.progress > div{height:100%;background:var(--verde);width:0;transition:width .25s}
+    .accordion{border:1px solid var(--borde);border-radius:16px;overflow:hidden;background:#fff}
+    .acc-item + .acc-item{border-top:1px solid var(--borde)}
+    .acc-btn{width:100%;border:0;background:#fff;text-align:left;padding:17px 18px;cursor:pointer;font-weight:900;color:var(--guinda);display:flex;justify-content:space-between;gap:12px}
+    .acc-panel{display:none;padding:0 18px 18px}.acc-item.open .acc-panel{display:block}.acc-item.open .acc-btn{background:#fff8fa}
+    .danger{border-left:5px solid #b33;background:#fff6f6}.safe{border-left:5px solid #5d9b75;background:#f5fbf7}
+    .alert-list{margin:8px 0;padding-left:20px}
+    .resource-list{display:grid;gap:10px}.resource{padding:14px;background:#fff;border:1px solid var(--borde);border-radius:12px;text-decoration:none}
+    .resource:hover{background:#fff3f5}
+    footer{background:#2d2226;color:#fff;padding:30px 0}.footer-grid{display:grid;gap:18px}.footer-grid a{color:#fff}
+    .fade{opacity:0;transform:translateY(18px);transition:opacity .65s ease,transform .65s ease}.fade.visible{opacity:1;transform:none}
+    .search{position:relative}.search input{padding-left:40px}.search span{position:absolute;left:14px;top:18px}
+    .hidden{display:none!important}
+    @media (min-width:700px){
+      .hero{grid-template-columns:1fr 200px}.hero-badge{width:180px;height:180px}
+      .grid-2{grid-template-columns:repeat(2,1fr)}.grid-3{grid-template-columns:repeat(3,1fr)}
+      .form-grid{grid-template-columns:repeat(3,1fr)}.result-top{grid-template-columns:repeat(3,1fr)}
+      .food-row{grid-template-columns:repeat(4,1fr)}.two-col-callout{grid-template-columns:repeat(2,1fr)}
+      .footer-grid{grid-template-columns:2fr 1fr 1fr}
+    }
+    @media print{
+      nav,.calculator-actions,.search,.no-print{display:none!important}
+      body{background:#fff}.card{box-shadow:none;break-inside:avoid}header{padding:25px}
+      section{margin-bottom:25px}
+    }
+  </style>
+</head>
+<body>
+<a class="skip" href="#contenido">Saltar al contenido</a>
+
+<header>
+  <div class="wrap hero">
+    <div>
+      <div class="eyebrow">Educación para la salud · ESM-IPN</div>
+      <h1>Embarazo y Lactancia: Guía para ti y tu bebé</h1>
+      <p>Información basada en ciencia para comprender la nutrición, el crecimiento fetal y algunas patologías frecuentes del embarazo.</p>
+      <div class="notice" style="color:#4b2632;background:rgba(255,255,255,.92)">
+        <strong>Importante:</strong> esta página es educativa. No sustituye la valoración de tu equipo de salud.
+      </div>
+    </div>
+    <div class="hero-badge" aria-label="Bebé y corazón">👶🏻</div>
+  </div>
+</header>
+
+<nav aria-label="Navegación principal">
+  <div class="wrap nav-inner">
+    <a href="#calculadora">🧮 Calculadora</a>
+    <a href="#nacimiento">👶 Nacimiento</a>
+    <a href="#lacteos">🥛 Lácteos</a>
+    <a href="#alergias">🛡️ Alergias</a>
+    <a href="#practica">✅ Qué hacer</a>
+    <a href="#patologias">🩺 Patologías</a>
+    <a href="#alarma">🚨 Urgencias</a>
+    <a href="#recursos">📚 Recursos</a>
+  </div>
+</nav>
+
+<main id="contenido" class="wrap">
+
+<section id="calculadora" class="fade">
+  <div class="card calculator">
+    <div class="eyebrow" style="color:var(--guinda)">Herramienta educativa</div>
+    <h2>Calcula tu IMC y tus necesidades de lácteos</h2>
+    <p class="section-intro">Ingresa tu peso antes del embarazo y tu talla. La semana de gestación es opcional y sirve para contextualizar el resultado; la ganancia total indicada abajo es la recomendación durante todo el embarazo.</p>
+    <div class="form-grid">
+      <div><label for="peso">Peso antes del embarazo (kg)</label><input id="peso" type="number" min="20" max="250" step="0.1" placeholder="Ej. 62"></div>
+      <div><label for="talla">Talla (cm)</label><input id="talla" type="number" min="100" max="220" step="0.1" placeholder="Ej. 165"></div>
+      <div><label for="semana">Semana de gestación (opcional)</label><input id="semana" type="number" min="1" max="42" step="1" placeholder="Ej. 24"></div>
+    </div>
+    <div class="calculator-actions">
+      <button class="btn" id="calcular">Calcular</button>
+      <button class="btn light" id="limpiar" type="button">Limpiar</button>
+    </div>
+    <div id="error" class="notice danger hidden" role="alert"></div>
+
+    <div id="resultado" class="result" aria-live="polite">
+      <div class="result-top">
+        <div class="metric"><span>IMC pregestacional</span><strong id="imcVal">—</strong><small>kg/m²</small></div>
+        <div class="metric"><span>Clasificación</span><strong id="clasif">—</strong></div>
+        <div class="metric"><span>Lácteos sugeridos</span><strong id="raciones">—</strong><small>raciones/día</small></div>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h3>Ganancia de peso recomendada durante el embarazo</h3>
+        <p><strong id="ganancia">—</strong></p>
+        <div class="range-bar" aria-label="Rango de ganancia de peso"><div id="rangeFill" class="range-fill"></div></div>
+        <div class="range-labels"><span>0 kg</span><span>20 kg</span></div>
+        <p class="small">Basado en el Apéndice Informativo D de la NOM-043-SSA2-2012. La atención prenatal actual también debe individualizar la ganancia según edad gestacional y condiciones clínicas.</p>
+      </div>
+      <div class="card" style="margin-top:14px">
+        <h3>Calcio aproximado de esas raciones</h3>
+        <p id="calcio">—</p>
+        <div class="food-row">
+          <div class="food"><span class="icon">🥛</span><strong>Leche</strong><br>240 ml<br><span class="small">≈ 300 mg</span></div>
+          <div class="food"><span class="icon">🥣</span><strong>Yogur</strong><br>150 g<br><span class="small">≈ 150 mg</span></div>
+          <div class="food"><span class="icon">🧀</span><strong>Queso</strong><br>30–40 g<br><span class="small">≈ 200–300 mg</span></div>
+          <div class="food"><span class="icon">🥛</span><strong>Requesón</strong><br>1 taza<br><span class="small">≈ 150 mg</span></div>
+        </div>
+      </div>
+      <div id="mensajePersonal" class="notice" style="margin-top:14px"></div>
+      <p class="small" style="margin-top:12px">Estas raciones son una herramienta educativa, no una prescripción. La cantidad de calcio necesaria depende de edad, dieta, fortificación y otras condiciones.</p>
+    </div>
+  </div>
+</section>
+
+<section id="nacimiento" class="fade">
+  <h2>¿Por qué importa el peso y la longitud al nacer?</h2>
+  <p class="section-intro">El peso y la longitud al nacer ayudan al equipo de salud a valorar el crecimiento del bebé y a identificar si requiere vigilancia especial. Siempre deben interpretarse junto con la edad gestacional.</p>
+  <div class="grid grid-3">
+    <article class="card"><div style="font-size:2.4rem">⚖️</div><h3>Peso al nacer</h3><p>Es cuánto pesa el bebé al nacer. Un valor bajo puede requerir evaluación adicional. Como referencia clínica, <strong>menos de 2,500 g</strong> se considera bajo peso al nacer.</p></article>
+    <article class="card"><div style="font-size:2.4rem">📏</div><h3>Longitud al nacer</h3><p>Es la medida del bebé de cabeza a talón. Junto con peso y perímetro cefálico, ayuda a describir su crecimiento.</p></article>
+    <article class="card"><div style="font-size:2.4rem">👶🏻</div><h3>¿Y la macrosomía?</h3><p>En esta guía educativa usamos <strong>&gt;4,000 g</strong> como referencia sencilla. En clínica también se considera la edad gestacional para definir si un bebé es grande para su edad.</p></article>
+  </div>
+  <div class="card" style="margin-top:18px;background:var(--verde-2);border-color:#c7e4d2">
+    <strong>Idea clave:</strong> “Un bebé bien nutrido crece mejor”, pero el crecimiento fetal depende de muchos factores. La alimentación materna es importante, no es el único determinante.
+  </div>
+</section>
+
+<section id="lacteos" class="fade">
+  <h2>Lácteos y el crecimiento de tu bebé</h2>
+  <p class="section-intro">Los estudios observacionales han encontrado asociaciones entre mayor consumo de leche o lácteos durante el embarazo y mayor peso al nacer. Esto <strong>no significa que los lácteos por sí solos causen</strong> un aumento de peso: intervienen muchos factores de la dieta, la salud y el embarazo.</p>
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>¿Qué podrían aportar?</h3>
+      <ul>
+        <li><strong>Calcio:</strong> participa en la formación de huesos y dientes.</li>
+        <li><strong>Proteínas:</strong> aportan aminoácidos para formar tejidos.</li>
+        <li><strong>Vitamina D</strong> (si está presente o el producto está fortificado): ayuda al metabolismo del calcio.</li>
+        <li><strong>IGF-1:</strong> es un “mensajero de crecimiento” del organismo; la relación entre dieta, IGF-1 y crecimiento es compleja.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Un dato llamativo</h3>
+      <p>En una cohorte danesa, quienes consumían <strong>≥6 vasos de leche/día</strong> tuvieron, en comparación con quienes no consumían leche, una diferencia media de <strong>108 g</strong> en peso al nacer y también diferencias en longitud. Es una asociación observacional y no una recomendación de beber 6 vasos al día.</p>
+    </div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h3>¿Qué encontraron algunos estudios?</h3>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>Estudio</th><th>Diseño / población</th><th>Hallazgo resumido</th></tr></thead>
+        <tbody>
+          <tr><td>Heppe et al., 2011</td><td>Cohorte, Países Bajos; n=3,405</td><td>Mayor consumo de leche se asoció con mayor peso fetal/ al nacer.</td></tr>
+          <tr><td>Mannion et al., 2006</td><td>Cohorte, Canadá; n=269–279</td><td>Cada taza adicional de leche se asoció con ~41 g más de peso al nacer.</td></tr>
+          <tr><td>Moore et al., 2004</td><td>Cohorte, Australia; n=557</td><td>Mayor proporción de proteína láctea se relacionó con mayor peso al nacer.</td></tr>
+          <tr><td>Olsen et al.</td><td>Cohorte danesa, gran población</td><td>La categoría &gt;6 vasos/día presentó +108 g frente a 0 vasos/día; también se observó mayor longitud.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="bar-chart" aria-label="Comparaciones de estudios, no equivalentes entre sí">
+      <div class="bar-item"><span>Mannion: +41 g/taza</span><div class="bar-track"><div class="bar-fill" style="width:38%"></div></div><strong>41 g</strong></div>
+      <div class="bar-item"><span>Heppe: +88 g*</span><div class="bar-track"><div class="bar-fill" style="width:81%"></div></div><strong>88 g</strong></div>
+      <div class="bar-item"><span>Olsen: +108 g*</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><strong>108 g</strong></div>
+    </div>
+    <p class="small">*Diferencia entre categorías de consumo; no deben sumarse ni compararse como si fueran intervenciones equivalentes. Fuente de síntesis: revisión sistemática de estudios sobre lácteos/leche y peso al nacer.</p>
+  </div>
+  <div class="card" style="margin-top:18px;background:var(--verde-2)">
+    <h3>En la práctica</h3>
+    <p>Como orientación sencilla para esta herramienta: <strong>3–4 raciones de lácteos al día</strong>, eligiendo opciones sin exceso de azúcares añadidos y dentro de una alimentación variada. Si no consumes lácteos, pide orientación para cubrir calcio y otros nutrimentos con alternativas adecuadas.</p>
+  </div>
+</section>
+
+<section id="alergias" class="fade">
+  <h2>¿Los lácteos causan alergias en mi bebé?</h2>
+  <div class="two-col-callout">
+    <div class="callout myth"><h3>❌ Mito</h3><p>“Si evito la leche y los lácteos durante el embarazo, voy a prevenir las alergias de mi bebé.”</p></div>
+    <div class="callout reality"><h3>✅ Lo que sabemos</h3><p>No se recomienda eliminar lácteos de manera rutinaria para prevenir alergias. Algunos estudios incluso han observado una asociación entre mayor consumo materno de lácteos y menor riesgo de alergia a la proteína de leche de vaca en la infancia.</p></div>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <p>En un estudio finlandés de 6,288 niños se observó una asociación entre mayor ingesta materna de productos lácteos durante el embarazo y menor riesgo de alergia a proteína de leche de vaca (<strong>OR 0.56</strong>). Esto es evidencia observacional: no demuestra que beber lácteos sea un tratamiento preventivo.</p>
+    <p><strong>Si tú tienes alergia a la proteína de leche de vaca</strong> o una indicación médica para evitar lácteos, no los reintroduzcas por tu cuenta. Un profesional puede ayudarte a cubrir calcio, vitamina D y proteínas con alternativas apropiadas.</p>
+  </div>
+</section>
+
+<section id="practica" class="fade">
+  <h2>Aplicación práctica: ¿qué hago?</h2>
+  <div class="grid grid-2">
+    <div class="card">
+      <h3>Checklist para tu próxima consulta</h3>
+      <div class="progress"><div id="progressFill"></div></div>
+      <p class="small" id="progressText">0 de 5 recomendaciones marcadas</p>
+      <div class="checklist" id="checklist">
+        <label><input type="checkbox"> Consumo una alimentación variada y suficiente.</label>
+        <label><input type="checkbox"> Incluyo lácteos o una alternativa fortificada adecuada.</label>
+        <label><input type="checkbox"> No elimino lácteos sin una indicación profesional.</label>
+        <label><input type="checkbox"> Sé cuáles son mis señales de alarma.</label>
+        <label><input type="checkbox"> Llevo mis dudas a la consulta prenatal.</label>
+      </div>
+    </div>
+    <div class="card">
+      <h3>Ideas sencillas</h3>
+      <ul>
+        <li>🥛 Leche con avena o fruta.</li>
+        <li>🥣 Yogur natural con fruta y nueces/semillas.</li>
+        <li>🧀 Queso en tacos, quesadillas o con verduras.</li>
+        <li>🌱 Si no consumes lácteos, busca alternativas fortificadas con calcio y revisa la etiqueta.</li>
+      </ul>
+      <button class="btn secondary no-print" onclick="window.print()">🖨️ Descargar / guardar esta guía como PDF</button>
+      <p class="small no-print">Se abrirá la función de impresión del navegador; selecciona “Guardar como PDF”.</p>
+    </div>
+  </div>
+</section>
+
+<section id="patologias" class="fade">
+  <h2>Patologías del embarazo: qué son y cómo se manejan</h2>
+  <p class="section-intro">Estas condiciones requieren valoración profesional. La alimentación puede apoyar el manejo, pero no sustituye medicamentos, estudios ni vigilancia obstétrica.</p>
+  <div class="accordion" id="accordion">
+    <div class="acc-item open">
+      <button class="acc-btn" aria-expanded="true">🤢 Hiperémesis gravídica <span>＋</span></button>
+      <div class="acc-panel">
+        <h3>¿Qué es?</h3><p>Náuseas y vómitos intensos del embarazo que pueden causar deshidratación, pérdida de peso o alteraciones de electrolitos.</p>
+        <div class="callout danger"><strong>Señales de alarma:</strong><ul class="alert-list"><li>No puedes retener líquidos.</li><li>Orinas muy poco o muy oscuro.</li><li>Pierdes peso o estás muy débil.</li><li>Presentas mareo/desmayo o vómitos persistentes.</li></ul></div>
+        <h3>Manejo de apoyo</h3><p>Comidas pequeñas y frecuentes, alimentos que toleres, evitar comidas muy grasas y separar sólidos de líquidos puede ayudar. La hidratación y los medicamentos antieméticos deben indicarse según valoración clínica.</p>
+      </div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false">🩺 Preeclampsia y eclampsia <span>＋</span></button>
+      <div class="acc-panel">
+        <h3>¿Qué es?</h3><p>La preeclampsia es un trastorno de presión arterial que suele aparecer después de las 20 semanas y puede acompañarse de proteinuria u otros datos de afectación de órganos. La eclampsia ocurre cuando aparecen convulsiones relacionadas con el trastorno.</p>
+        <div class="callout danger"><strong>Señales de alarma:</strong><ul class="alert-list"><li>Dolor de cabeza intenso o persistente.</li><li>Visión borrosa, luces o manchas.</li><li>Dolor fuerte en la parte alta del abdomen.</li><li>Hinchazón marcada de cara o manos.</li><li>Convulsiones: emergencia inmediata.</li></ul></div>
+        <h3>Manejo</h3><p>Requiere vigilancia médica, control de la presión y, según gravedad, medicamentos antihipertensivos y <strong>sulfato de magnesio</strong> para prevenir o tratar convulsiones. Si hay indicación de finalizar el embarazo, el equipo decide el momento y la vía. La alimentación debe ser suficiente y equilibrada; no hagas una restricción extrema de sal por tu cuenta.</p>
+      </div>
+    </div>
+    <div class="acc-item">
+      <button class="acc-btn" aria-expanded="false">🍽️ Diabetes gestacional <span>＋</span></button>
+      <div class="acc-panel">
+        <h3>¿Qué es?</h3><p>Es una alteración del manejo de la glucosa que se detecta durante el embarazo. Puede aumentar el riesgo de que el bebé crezca demasiado, entre otras complicaciones.</p>
+        <div class="callout danger"><strong>Consulta si:</strong><ul class="alert-list"><li>Tienes mucha sed o hambre de forma persistente.</li><li>Orinas con mucha frecuencia, especialmente si es nuevo.</li><li>Tu equipo detecta glucosa elevada.</li><li>En ultrasonido se observa crecimiento fetal mayor al esperado.</li></ul></div>
+        <h3>Manejo nutricional</h3><p>Se individualizan horarios, porciones y distribución de carbohidratos, priorizando alimentos ricos en fibra y carbohidratos de mejor calidad. Muchas personas usan comidas y colaciones distribuidas durante el día. Si con alimentación y actividad física no se alcanzan las metas de glucosa, puede requerirse insulina u otro tratamiento indicado por el equipo médico.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="alarma" class="fade">
+  <h2>¿Cuándo buscar ayuda médica?</h2>
+  <div class="grid grid-3">
+    <div class="card danger"><h3>🚨 De inmediato</h3><ul class="alert-list"><li>Convulsiones.</li><li>Dificultad para respirar.</li><li>Pérdida del estado de alerta.</li><li>Sangrado abundante.</li><li>Dolor intenso y repentino.</li></ul></div>
+    <div class="card danger"><h3>⚠️ Hoy mismo</h3><ul class="alert-list"><li>Dolor de cabeza intenso + visión alterada.</li><li>No puedes retener líquidos.</li><li>Deshidratación o desmayo.</li><li>Presión arterial elevada indicada por tu equipo.</li></ul></div>
+    <div class="card safe"><h3>📞 Siempre puedes preguntar</h3><p>Ante dudas sobre alimentación, medicamentos, ganancia de peso, glucosa, presión arterial o crecimiento fetal, consulta a tu equipo prenatal.</p><p><strong>En México:</strong> ante una emergencia, llama al <strong>911</strong>.</p></div>
+  </div>
+  <div class="card" style="margin-top:18px;text-align:center">
+    <strong>Esta página no sustituye la consulta médica.</strong> Si algo te preocupa, busca valoración profesional.
+  </div>
+</section>
+
+<section id="recursos" class="fade">
+  <h2>Recursos adicionales</h2>
+  <div class="resource-list">
+    <a class="resource" target="_blank" rel="noopener" href="https://sidof.segob.gob.mx/notas/docFuente/5285372">📜 NOM-043-SSA2-2012 — Servicios básicos de salud. Promoción y educación para la salud en materia alimentaria.</a>
+    <a class="resource" target="_blank" rel="noopener" href="https://www.gob.mx/promosalud/documentos/guias-alimentarias-para-la-poblacion-mexicana">🥗 Guías Alimentarias para la población mexicana — Secretaría de Salud.</a>
+    <a class="resource" target="_blank" rel="noopener" href="https://www.gob.mx/salud/sinsamac/documentos/guias-alimentarias-saludables-y-sostenibles-para-la-poblacion-mexicana-2025">🌱 Guías Alimentarias Saludables y Sostenibles — edición/actualización institucional.</a>
+    <a class="resource" target="_blank" rel="noopener" href="https://www.who.int/es/news-room/fact-sheets/detail/pre-eclampsia">🌍 OMS — Preeclampsia.</a>
+    <a class="resource" target="_blank" rel="noopener" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC9261982/">🔎 Revisión sistemática — consumo materno de leche/lácteos y resultados al nacimiento.</a>
+  </div>
+  <div class="card" style="margin-top:18px">
+    <h3>Bibliografía resumida para la exposición</h3>
+    <ol>
+      <li>NOM-043-SSA2-2012, Apéndice Informativo D: ganancia de peso según IMC pregestacional.</li>
+      <li>Secretaría de Salud / INSP. Guías Alimentarias Saludables y Sostenibles para la Población Mexicana.</li>
+      <li>Heppe DH et al. Maternal milk consumption, fetal growth, and neonatal complications. <em>Am J Clin Nutr.</em> 2011.</li>
+      <li>Mannion CA et al. Association of low intake of milk and vitamin D during pregnancy with decreased birth weight. <em>CMAJ.</em> 2006.</li>
+      <li>Moore VM et al. Dietary composition of pregnant women is related to size of the baby at birth. <em>J Nutr.</em> 2004.</li>
+      <li>Olsen SF et al. Estudio de cohorte danés sobre consumo de leche y tamaño al nacer.</li>
+      <li>OMS. Información y recomendaciones sobre preeclampsia/eclampsia y salud materna.</li>
+    </ol>
+  </div>
+</section>
+
+<section class="fade">
+  <div class="card">
+    <h2>Una última idea</h2>
+    <p>La nutrición durante el embarazo no consiste en comer “perfecto”. Consiste en tener una alimentación suficiente, variada y segura, acudir a controles prenatales y pedir ayuda cuando algo no va bien.</p>
+    <p><strong>Cuida de ti: también estás cuidando de tu bebé. 💚</strong></p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <div class="wrap footer-grid">
+    <div><strong>Embarazo y Lactancia: Guía para ti y tu bebé</strong><p>Recurso educativo para exposición de Nutriología.</p></div>
+    <div><strong>Créditos</strong><p>Elaborado por estudiantes de la ESM-IPN, Academia de Nutriología, ciclo 2027-1.</p></div>
+    <div><strong>Aviso</strong><p>Información educativa. No sustituye la consulta médica.</p></div>
+  </div>
+</footer>
+
+<script>
+  const $ = s => document.querySelector(s);
+
+  function clasificar(imc){
+    if(imc < 18.5) return {nombre:"Bajo peso", rango:"12.5 – 18.0 kg", min:12.5, max:18, raciones:"4", calcio:"≈ 1,200 mg/día", mensaje:`Con tu IMC de ${imc.toFixed(1)}, se recomienda vigilar que la ganancia de peso sea suficiente. Como orientación educativa, usa 4 raciones de lácteos al día para apoyar el aporte de calcio.`};
+    if(imc < 25) return {nombre:"Normal", rango:"11.5 – 16.0 kg", min:11.5, max:16, raciones:"3–4", calcio:"≈ 900 – 1,200 mg/día", mensaje:`Con tu IMC de ${imc.toFixed(1)}, mantén una alimentación variada y 3–4 raciones de lácteos al día, según tu alimentación total y las indicaciones de tu equipo de salud.`};
+    if(imc < 30) return {nombre:"Sobrepeso", rango:"7.0 – 11.5 kg", min:7, max:11.5, raciones:"3", calcio:"≈ 900 mg/día", mensaje:`Con tu IMC de ${imc.toFixed(1)}, cuida la ganancia de peso sin hacer dietas restrictivas. Como orientación educativa, 3 raciones de lácteos al día pueden contribuir al aporte de calcio.`};
+    return {nombre:"Obesidad", rango:"5.0 – 9.0 kg", min:5, max:9, raciones:"3", calcio:"≈ 900 mg/día", mensaje:`Con tu IMC de ${imc.toFixed(1)}, la ganancia de peso debe individualizarse con tu equipo prenatal. Como orientación educativa, 3 raciones de lácteos al día pueden contribuir al aporte de calcio.`};
+  }
+
+  $("#calcular").addEventListener("click", () => {
+    const peso = parseFloat($("#peso").value), talla = parseFloat($("#talla").value), semana = parseInt($("#semana").value,10);
+    $("#error").classList.add("hidden");
+    if(!peso || !talla || peso <= 0 || talla <= 0){
+      $("#error").textContent = "Por favor, introduce un peso y una talla válidos.";
+      $("#error").classList.remove("hidden"); $("#resultado").classList.remove("show"); return;
+    }
+    if(semana && (semana < 1 || semana > 42)){
+      $("#error").textContent = "La semana de gestación debe estar entre 1 y 42.";
+      $("#error").classList.remove("hidden"); $("#resultado").classList.remove("show"); return;
+    }
+    const imc = peso / Math.pow(talla/100,2), r = clasificar(imc);
+    $("#imcVal").textContent = imc.toFixed(1);
+    $("#clasif").textContent = r.nombre;
+    $("#raciones").textContent = r.raciones;
+    $("#ganancia").textContent = r.rango;
+    $("#calcio").textContent = r.calcio;
+    $("#mensajePersonal").textContent = r.mensaje + (semana ? ` Semana de gestación registrada: ${semana}. Para saber cuánto deberías haber ganado hasta hoy, se necesita valorar la curva de ganancia y tu situación clínica.` : "");
+    $("#rangeFill").style.width = Math.min(100, (r.max/20)*100) + "%";
+    $("#resultado").classList.add("show");
+  });
+
+  $("#limpiar").addEventListener("click", () => {
+    ["#peso","#talla","#semana"].forEach(id => $(id).value="");
+    $("#resultado").classList.remove("show"); $("#error").classList.add("hidden");
+  });
+
+  document.querySelectorAll(".acc-btn").forEach(btn => btn.addEventListener("click", () => {
+    const item = btn.parentElement, open = item.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open);
+  }));
+
+  const checks = [...document.querySelectorAll("#checklist input")];
+  function updateProgress(){
+    const done = checks.filter(x=>x.checked).length;
+    $("#progressFill").style.width = (done/checks.length*100)+"%";
+    $("#progressText").textContent = `${done} de ${checks.length} recomendaciones marcadas`;
+  }
+  checks.forEach(c=>c.addEventListener("change",updateProgress));
+
+  const observer = new IntersectionObserver(entries => entries.forEach(e => {
+    if(e.isIntersecting){e.target.classList.add("visible"); observer.unobserve(e.target)}
+  }),{threshold:.08});
+  document.querySelectorAll(".fade").forEach(el=>observer.observe(el));
+</script>
+</body>
+</html>
